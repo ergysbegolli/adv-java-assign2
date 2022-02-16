@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+  <h:head>
+    <title>Edit Book</title>
+    <h:outputStylesheet name="bootstrap.css" library="css" />
+  </h:head>
+  <body>
+    <ui:include src="WEB-INF/control_panel.xhtml" />
+    <h:form>
+      <h:panelGrid id="panelGrid" columns="2" cellpadding="3" cellspacing="1" columnClasses="left-column,right-column">
+        <h:outputText value="Code:  " />
+        <h:outputText value="#{viewCountryBean.country.isoCode}"/>
+
+        <h:outputText value="Name:  " />
+        <h:outputText value="#{viewCountryBean.country.location}"/>
+
+        <h:outputText value="Continent:  " />
+        <h:outputText value="#{viewCountryBean.country.continent}"/>
+
+        <h:outputText value="Median Age:  " />
+        <h:outputText value="#{viewCountryBean.country.medianAge}"/>
+
+        <h:outputText value="Stringency Index:  " />
+        <h:outputText value="#{viewCountryBean.country.stringencyIndex}"/>
+
+        <h:outputText value="Reproduction Rate" />
+        <h:outputText value="#{viewCountryBean.country.reproductionRate}"/>
+
+        <h:outputText value="Population" />
+        <h:outputText value="#{viewCountryBean.country.population}"/>
+
+        <f:facet name = "footer">
+          <h:panelGroup>
+            <h:commandLink value="Back" action="country-list" />
+            <h:outputText value=" " />
+            <h:link value="Update" outcome="edit-country" >
+              <f:param name="countryCode" value="#{viewCountryBean.countryCode}" />
+            </h:link>
+            <h:outputText value=" " />
+            <h:commandLink value="Delete" action="#{viewCountryBean.delete}"
+                           onclick="if (! confirm('Are you sure?')) return false"
+            >
+            <f:param name="countryCode" value="#{viewCountryBean.countryCode}" />
+            </h:commandLink>
+          </h:panelGroup>
+        </f:facet>
+
+      </h:panelGrid>
+    </h:form>
+  </body>
+</html>

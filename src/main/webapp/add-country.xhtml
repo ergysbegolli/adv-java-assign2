@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+  <h:head>
+    <title>Add Country</title>
+    <h:outputStylesheet name="bootstrap.css" library="css" />
+  </h:head>
+  <body>
+    <ui:include src="WEB-INF/control_panel.xhtml" />
+    <h:panelGroup styleClass="container ">
+      <h:panelGroup styleClass="row justify-content-center align-items-center">
+        <h:panelGroup styleClass="col-md-12">
+          <h:panelGroup styleClass="col-md-3"> </h:panelGroup>
+          <h:panelGroup styleClass="col-md-6">
+            <h1 class="text-center text-info pt-5">Add Country</h1>
+            <h:outputText
+                    rendered="#{addCountryBean.isExistingCountry()}"
+                    styleClass="text-center text-danger btn-danger form-control"
+                    value="Error! Country already exists!"
+            />
+            <h:form styleClass="form" style="margin: auto">
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Iso code" />
+                <h:inputText
+                  styleClass="form-control"
+                  id="codeText"
+                  value="#{addCountryBean.code}"
+                  required="true"
+                  requiredMessage="Code is required!"
+                />
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Name" />
+                <h:inputText
+                        styleClass="form-control"
+                        id="nameText"
+                        value="#{addCountryBean.name}"
+                />
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Continent" />
+                <h:selectOneMenu styleClass="form-control" value="#{addCountryBean.continent}" >
+                  <f:selectItem itemValue="" itemLabel="" />
+                  <f:selectItems value="#{singletonBean.continents}" />
+                </h:selectOneMenu>
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Population" />
+                <h:inputText
+                        styleClass="form-control"
+                        value="#{addCountryBean.population}"
+                />
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Reproduction Rate" />
+                <h:inputText
+                        styleClass="form-control"
+                        value="#{addCountryBean.reproductionRate}"
+                />
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Median Age" />
+                <h:inputText
+                        styleClass="form-control"
+                        value="#{addCountryBean.medianAge}"
+                />
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Stringency Index" />
+                <h:inputText
+                        styleClass="form-control"
+                        value="#{addCountryBean.stringencyIndex}"
+                />
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:commandLink value="Create"
+                               action="#{addCountryBean.create}"
+                               onclick="if (! confirm('Are you sure?')) return false" />
+                <h:commandLink value="Cancel" action="index" style="margin-left: 20px;" />
+              </h:panelGroup>
+            </h:form>
+          </h:panelGroup>
+        </h:panelGroup>
+      </h:panelGroup>
+    </h:panelGroup>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+  <h:head>
+    <title>Edit Country</title>
+    <h:outputStylesheet name="bootstrap.css" library="css" />
+  </h:head>
+  <body>
+    <ui:include src="WEB-INF/control_panel.xhtml" />
+    <h:panelGroup styleClass="container ">
+      <h:panelGroup styleClass="row justify-content-center align-items-center">
+        <h:panelGroup styleClass="col-md-12">
+          <h:panelGroup styleClass="col-md-3"> </h:panelGroup>
+          <h:panelGroup styleClass="col-md-6">
+            <h1 class="text-center text-info pt-5">Edit Country</h1>
+            <h:form styleClass="form" style="margin: auto">
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Code:  " />
+                <h:outputText
+                        styleClass="text-info"
+                        value="#{editCountryBean.countryCode}"
+                />
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Name:  " />
+                <h:inputText
+                        styleClass="form-control"
+                        id="nameText"
+                        value="#{editCountryBean.name}"
+                />
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Continent" />
+                <h:selectOneMenu styleClass="form-control" value="#{editCountryBean.continent}" >
+                  <f:selectItem itemValue="" itemLabel="" />
+                  <f:selectItems value="#{singletonBean.continents}" />
+                </h:selectOneMenu>
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Population" />
+                <h:inputText
+                        styleClass="form-control"
+                        value="#{editCountryBean.population}"
+                />
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Reproduction Rate" />
+                <h:inputText
+                        styleClass="form-control"
+                        value="#{editCountryBean.reproductionRate}"
+                />
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Median Age" />
+                <h:inputText
+                        styleClass="form-control"
+                        value="#{editCountryBean.medianAge}"
+                />
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Stringency Index" />
+                <h:inputText
+                        styleClass="form-control"
+                        value="#{editCountryBean.stringencyIndex}"
+                />
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:commandLink value="Update"
+                               action="#{editCountryBean.update}"
+                               onclick="if (! confirm('Are you sure?')) return false">
+                  <f:param name="countryCode" value="#{editCountryBean.countryCode}" />
+                </h:commandLink>
+                <h:link value="Cancel" outcome="view-country" style="margin-left: 20px;">
+                  <f:param name="countryCode" value="#{editCountryBean.countryCode}" />
+                </h:link>
+              </h:panelGroup>
+            </h:form>
+          </h:panelGroup>
+        </h:panelGroup>
+      </h:panelGroup>
+    </h:panelGroup>
+  </body>
+</html>

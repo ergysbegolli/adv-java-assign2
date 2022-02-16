@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:head>
+  <title>List countries</title>
+  <h:outputStylesheet name="bootstrap.css" library="css" />
+</h:head>
+<body>
+<ui:include src="WEB-INF/control_panel.xhtml" />
+<h:form>
+  <h:panelGrid columns="3"  rendered="#{controlPanelBean.userPanelRendered}">
+    <h:outputText
+            styleClass="text-info"
+            value="Date (yyyy-mm-dd)"
+    />
+    <h:inputText
+            styleClass="form-control"
+            id="dateInputText"
+            value="#{listCovidDataBean.filterDate}"
+            converterMessage="Wrong date format"
+    >
+      <f:convertDateTime
+              id="dateConverter"
+              for="dateInputText"
+              pattern="yyyy-MM-dd"
+      />
+    </h:inputText>
+    <h:message
+            id="dateMessage"
+            styleClass="alert alert-warning"
+            style="padding: 8px !important;"
+            for="dateInputText"
+    />
+    <h:commandLink value="Filter" action="#{listCovidDataBean.filter}" />
+    <h:commandLink value="Clear" action="#{listCovidDataBean.clear}" rendered="#{listCovidDataBean.renderClear()}"/>
+    <h:link value="Create" outcome="add-coviddata" />
+  </h:panelGrid>
+  <h1>Listing #{listCovidDataBean.records.size()} Records</h1>
+  <br />
+  <br />
+  <h:dataTable
+          class="table table-striped table-bordered order-table"
+          value="#{listCovidDataBean.records}"
+          var="record"
+  >
+    <h:column>
+      <f:facet name="header">
+        <h:commandLink value="Country Code" action="#{listCovidDataBean.sortIsoCode}"/>
+      </f:facet>
+      #{record.covidDataRecordPK.isoCode}
+    </h:column>
+    <h:column>
+      <f:facet name="header">Date</f:facet>
+      #{record.covidDataRecordPK.date}
+    </h:column>
+    <h:column>
+      <f:facet name="header">
+        <h:commandLink value="Total Cases" action="#{listCovidDataBean.sortTotalCases}"/>
+      </f:facet>
+      #{record.totalCases}
+    </h:column>
+    <h:column>
+      <f:facet name="header">
+        <h:commandLink value="New Cases" action="#{listCovidDataBean.sortNewCases}"/>
+      </f:facet>
+      #{record.newCases}
+    </h:column>
+    <h:column>
+      <f:facet name="header">
+        <h:commandLink value="New Cases Smoothed" action="#{listCovidDataBean.sortNewCasesSmoothed}"/>
+      </f:facet>
+      #{record.newCasesSmoothed}
+    </h:column>
+    <h:column>
+      <f:facet name="header">
+        <h:commandLink value="Total Deaths" action="#{listCovidDataBean.sortTotalDeaths}"/>
+      </f:facet>
+      #{record.totalDeaths}
+    </h:column>
+    <h:column>
+      <f:facet name="header">
+        <h:commandLink value="New Deaths" action="#{listCovidDataBean.sortNewDeaths}"/>
+      </f:facet>
+      #{record.newDeaths}
+    </h:column>
+    <h:column>
+      <f:facet name="header">
+        <h:commandLink value="New Deaths Smoothed" action="#{listCovidDataBean.sortNewDeathsSmoothed}"/>
+      </f:facet>
+      #{record.newDeathsSmoothed}
+    </h:column>
+    <h:column>
+      <f:facet name="header">
+        <h:commandLink value="Total Tests" action="#{listCovidDataBean.sortTotalTests}"/>
+      </f:facet>
+      #{record.totalTests}
+    </h:column>
+    <h:column>
+      <f:facet name="header">
+        <h:commandLink value="New Tests" action="#{listCovidDataBean.sortNewTests}"/>
+      </f:facet>
+      #{record.newTests}
+    </h:column>
+    <h:column rendered="#{controlPanelBean.userPanelRendered}">
+      <f:facet name="header"></f:facet>
+      <h:link value="Edit" outcome="edit-coviddata">
+        <f:param name="countryCode" value="#{record.covidDataRecordPK.isoCode}" />
+        <f:param name="date" value="#{listCovidDataBean.formatDateParam(record.covidDataRecordPK.date)}" />
+      </h:link>
+    </h:column>
+    <h:column rendered="#{controlPanelBean.userPanelRendered}">
+      <f:facet name="header"></f:facet>
+      <h:commandLink value="Delete"
+                     action="#{listCovidDataBean.deleteRecord(record.covidDataRecordPK)}"
+                     onclick="if (! confirm('Are you sure?')) return false"/>
+    </h:column>
+  </h:dataTable>
+</h:form>
+</body>
+</html>

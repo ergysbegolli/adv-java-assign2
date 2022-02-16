@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+  <h:head>
+    <title>Edit Book</title>
+    <h:outputStylesheet name="bootstrap.css" library="css" />
+  </h:head>
+  <body>
+    <ui:include src="WEB-INF/control_panel.xhtml" />
+    <h:panelGroup styleClass="container ">
+      <h:panelGroup styleClass="row justify-content-center align-items-center">
+        <h:panelGroup styleClass="col-md-12">
+          <h:panelGroup styleClass="col-md-3"> </h:panelGroup>
+          <h:panelGroup styleClass="col-md-6">
+            <h1 class="text-center text-info pt-5">Edit Profile</h1>
+            <h:form styleClass="form" style="margin: auto">
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Email:  " />
+                <h:outputText
+                        styleClass="text-info"
+                        value="#{editProfileBean.email}"
+                />
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Name:  " />
+                <h:inputText
+                        styleClass="form-control"
+                        id="nameText"
+                        value="#{editProfileBean.name}"
+                />
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Surname:  " />
+                <h:inputText
+                        styleClass="form-control"
+                        value="#{editProfileBean.surname}"
+                />
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Password:  " />
+                <h:inputText
+                        styleClass="form-control"
+                        value="#{editProfileBean.password}"
+                />
+              </h:panelGroup>
+              <br /><br />
+              <h:panelGroup styleClass="form-group">
+                <h:outputText styleClass="text-info" value="Role:  " />
+              <h:selectOneMenu
+                      styleClass="form-control"
+                      id="userTypeSelect"
+                      value="#{editProfileBean.role}"
+                      required="true"
+                      requiredMessage="Please select the type"
+              >
+                <f:selectItem itemLabel="Admin" itemValue="Admin" />
+                <f:selectItem itemLabel="Standard" itemValue="Standard" />
+              </h:selectOneMenu>
+          </h:panelGroup>
+
+          <br></br>
+              <h:panelGroup styleClass="form-group">
+                <h:commandLink value="Update"
+                               action="#{editProfileBean.update}"
+                               onclick="if (! confirm('Are you sure?')) return false" />
+                <h:commandLink value="Cancel" action="view-profile" style="margin-left: 20px;" />
+              </h:panelGroup>
+            </h:form>
+          </h:panelGroup>
+        </h:panelGroup>
+      </h:panelGroup>
+    </h:panelGroup>
+  </body>
+</html>

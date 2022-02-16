@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+  <h:head>
+    <h:outputStylesheet name="bootstrap.css" library="css" />
+  </h:head>
+  <h:body>
+    <ui:composition>
+      <h:form styleClass="form" style="margin: auto; width: 100% !important">
+        <h:panelGrid columns="4" style="width: 100%">
+          <h:commandLink
+            style="font-size: 40px"
+            styleClass="col-md-9 text-left text-info pt-3"
+            value="Home"
+            action="index"
+          />
+          <h:commandLink
+            rendered="#{controlPanelBean.logInPanelRendered}"
+            styleClass="text-center btn-default form-control"
+            value="Register"
+            action="register"
+          />
+          <h:commandLink
+            rendered="#{controlPanelBean.logInPanelRendered}"
+            styleClass="text-center  btn-primary form-control"
+            value="Login"
+            action="login"
+          />
+          <h:commandLink
+                  style="font-size: 40px"
+                  styleClass="col-md-9 text-left text-info pt-3"
+                  value="Profile"
+                  action="view-profile"
+                  rendered="#{controlPanelBean.userPanelRendered}"
+          />
+          <h:commandLink
+            rendered="#{controlPanelBean.userPanelRendered}"
+            styleClass="text-center btn-warning form-control"
+            value="Logout"
+            action="#{controlPanelBean.logOutAction}"
+          />
+        </h:panelGrid>
+      </h:form>
+    </ui:composition>
+  </h:body>
+</html>

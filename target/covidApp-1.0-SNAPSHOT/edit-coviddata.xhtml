@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:head>
+  <title>Edit Covid Data</title>
+  <h:outputStylesheet name="bootstrap.css" library="css" />
+</h:head>
+<body>
+<ui:include src="WEB-INF/control_panel.xhtml" />
+<h:panelGroup styleClass="container ">
+  <h:panelGroup styleClass="row justify-content-center align-items-center">
+    <h:panelGroup styleClass="col-md-12">
+      <h:panelGroup styleClass="col-md-3"> </h:panelGroup>
+      <h:panelGroup styleClass="col-md-6">
+        <h1 class="text-center text-info pt-5">Edit Covid Data</h1>
+        <h:form styleClass="form" style="margin: auto">
+          <h:panelGroup styleClass="form-group">
+            <h:outputText styleClass="text-info" value="Code:  " />
+            <h:outputText
+                    styleClass="text-info"
+                    value="#{editCovidDataBean.countryCode}"
+            />
+          </h:panelGroup>
+          <br /><br />
+          <h:panelGroup styleClass="form-group">
+            <h:outputText styleClass="text-info" value="Date:  " />
+            <h:outputText
+                    styleClass="text-info"
+                    value="#{editCovidDataBean.renderDate()}"
+            />
+          </h:panelGroup>
+          <br></br>
+          <h:panelGroup styleClass="form-group">
+            <h:outputText styleClass="text-info" value="New Cases" />
+            <h:inputText
+                    styleClass="form-control"
+                    value="#{editCovidDataBean.newCases}"
+            />
+          </h:panelGroup>
+          <br /><br />
+          <h:panelGroup styleClass="form-group">
+            <h:outputText styleClass="text-info" value="New Cases Smoothed" />
+            <h:inputText
+                    styleClass="form-control"
+                    value="#{editCovidDataBean.newCasesSmoothed}"
+            />
+          </h:panelGroup>
+          <br /><br />
+          <h:panelGroup styleClass="form-group">
+            <h:outputText styleClass="text-info" value="Total Cases" />
+            <h:inputText
+                    styleClass="form-control"
+                    value="#{editCovidDataBean.totalCases}"
+            />
+          </h:panelGroup>
+          <br /><br />
+          <h:panelGroup styleClass="form-group">
+            <h:outputText styleClass="text-info" value="New Deaths" />
+            <h:inputText
+                    styleClass="form-control"
+                    value="#{editCovidDataBean.newDeaths}"
+            />
+          </h:panelGroup>
+          <br /><br />
+          <h:panelGroup styleClass="form-group">
+            <h:outputText styleClass="text-info" value="New Deaths Smoothed" />
+            <h:inputText
+                    styleClass="form-control"
+                    value="#{editCovidDataBean.newDeathsSmoothed}"
+            />
+          </h:panelGroup>
+          <br></br>
+          <h:panelGroup styleClass="form-group">
+            <h:outputText styleClass="text-info" value="Total Deaths" />
+            <h:inputText
+                    styleClass="form-control"
+                    value="#{editCovidDataBean.totalDeaths}"
+            />
+          </h:panelGroup>
+          <br /><br />
+          <h:panelGroup styleClass="form-group">
+            <h:outputText styleClass="text-info" value="New Tests" />
+            <h:inputText
+                    styleClass="form-control"
+                    value="#{editCovidDataBean.newTests}"
+            />
+          </h:panelGroup>
+          <br /><br />
+          <h:panelGroup styleClass="form-group">
+            <h:outputText styleClass="text-info" value="Total Tests" />
+            <h:inputText
+                    styleClass="form-control"
+                    value="#{editCovidDataBean.totalTests}"
+            />
+          </h:panelGroup>
+          <br /><br />
+          <h:panelGroup styleClass="form-group">
+            <h:commandLink value="Update"
+                           action="#{editCovidDataBean.update}"
+                           onclick="if (! confirm('Are you sure?')) return false">
+              <f:param name="countryCode" value="#{editCovidDataBean.countryCode}" />
+              <f:param name="date" value="#{editCovidDataBean.renderDate()}" />
+            </h:commandLink>
+            <h:link value="Cancel" outcome="covid-data-list" style="margin-left: 20px;"/>
+          </h:panelGroup>
+        </h:form>
+      </h:panelGroup>
+    </h:panelGroup>
+  </h:panelGroup>
+</h:panelGroup>
+</body>
+</html>
